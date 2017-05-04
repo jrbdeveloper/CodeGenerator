@@ -1,0 +1,26 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+using <#= m_data.SolutionName #>.Core.Contracts.Domain;
+using <#= m_data.SolutionName #>.Core.ViewModels;
+using System.Web.Mvc;
+
+namespace <#= m_data.SolutionName #>.UI.Controllers
+{
+    public class <#= m_data.VerticleName #>Controller : BaseController
+    {
+        private I<#= m_data.VerticleName #>Domain _<#= m_data.VerticleName #>Domain;
+
+        public <#= m_data.VerticleName #>Controller(I<#= m_data.VerticleName #>Domain <#= m_data.VerticleName #>Domain)
+        {
+            _<#= m_data.VerticleName #>Domain = <#= m_data.VerticleName #>Domain;
+        }
+        
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+}
