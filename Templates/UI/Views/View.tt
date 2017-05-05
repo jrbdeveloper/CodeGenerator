@@ -1,0 +1,24 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+@model <#= m_data.SolutionName #>.Core.ViewModels.<#= m_data.VerticleName #>ViewModel
+
+@{
+    ViewBag.Title = "<#= m_data.VerticleName #>";
+}
+
+<h1><#= m_data.VerticleName #></h1>
+<hr />
+
+<div class="container" id="<#= m_data.VerticleName #>-container">
+    
+</div>
+
+<script src="~/Scripts/Modules/<#= m_data.VerticleName #>.module.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#<#= m_data.VerticleName #>-container").<#= m_data.VerticleName #>();
+    });
+</script>

@@ -66,7 +66,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkList = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.chkEdit = new System.Windows.Forms.CheckBox();
+            this.chkDetails = new System.Windows.Forms.CheckBox();
+            this.chkCreate = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -102,7 +107,7 @@
             // 
             this.tbSolutionName.Location = new System.Drawing.Point(91, 57);
             this.tbSolutionName.Name = "tbSolutionName";
-            this.tbSolutionName.Size = new System.Drawing.Size(516, 20);
+            this.tbSolutionName.Size = new System.Drawing.Size(487, 20);
             this.tbSolutionName.TabIndex = 1;
             // 
             // label3
@@ -124,7 +129,7 @@
             // btnGenerate
             // 
             this.btnGenerate.Enabled = false;
-            this.btnGenerate.Location = new System.Drawing.Point(477, 641);
+            this.btnGenerate.Location = new System.Drawing.Point(477, 654);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
             this.btnGenerate.TabIndex = 4;
@@ -134,7 +139,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(558, 641);
+            this.btnExit.Location = new System.Drawing.Point(558, 654);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 5;
@@ -290,7 +295,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 103);
+            this.label9.Location = new System.Drawing.Point(9, 122);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
             this.label9.TabIndex = 25;
@@ -300,7 +305,7 @@
             // 
             this.cbControllers.DisplayMember = "Name";
             this.cbControllers.FormattingEnabled = true;
-            this.cbControllers.Location = new System.Drawing.Point(70, 99);
+            this.cbControllers.Location = new System.Drawing.Point(70, 118);
             this.cbControllers.Name = "cbControllers";
             this.cbControllers.Size = new System.Drawing.Size(301, 21);
             this.cbControllers.TabIndex = 26;
@@ -308,7 +313,7 @@
             // 
             // tbControllers
             // 
-            this.tbControllers.Location = new System.Drawing.Point(380, 99);
+            this.tbControllers.Location = new System.Drawing.Point(380, 118);
             this.tbControllers.Name = "tbControllers";
             this.tbControllers.Size = new System.Drawing.Size(227, 20);
             this.tbControllers.TabIndex = 27;
@@ -317,7 +322,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(9, 140);
+            this.label10.Location = new System.Drawing.Point(9, 159);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 13);
             this.label10.TabIndex = 28;
@@ -327,7 +332,7 @@
             // 
             this.cbScriptModules.DisplayMember = "Name";
             this.cbScriptModules.FormattingEnabled = true;
-            this.cbScriptModules.Location = new System.Drawing.Point(70, 136);
+            this.cbScriptModules.Location = new System.Drawing.Point(70, 155);
             this.cbScriptModules.Name = "cbScriptModules";
             this.cbScriptModules.Size = new System.Drawing.Size(301, 21);
             this.cbScriptModules.TabIndex = 29;
@@ -335,7 +340,7 @@
             // 
             // tbScriptModules
             // 
-            this.tbScriptModules.Location = new System.Drawing.Point(380, 136);
+            this.tbScriptModules.Location = new System.Drawing.Point(380, 155);
             this.tbScriptModules.Name = "tbScriptModules";
             this.tbScriptModules.Size = new System.Drawing.Size(227, 20);
             this.tbScriptModules.TabIndex = 30;
@@ -411,6 +416,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.chkCreate);
+            this.groupBox3.Controls.Add(this.chkDetails);
+            this.groupBox3.Controls.Add(this.chkEdit);
+            this.groupBox3.Controls.Add(this.chkList);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.cbViewModels);
             this.groupBox3.Controls.Add(this.tbViewModels);
@@ -425,13 +434,24 @@
             this.groupBox3.Controls.Add(this.cbControllers);
             this.groupBox3.Location = new System.Drawing.Point(12, 449);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(621, 177);
+            this.groupBox3.Size = new System.Drawing.Size(621, 196);
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MVC";
             // 
+            // chkList
+            // 
+            this.chkList.AutoSize = true;
+            this.chkList.Location = new System.Drawing.Point(380, 88);
+            this.chkList.Name = "chkList";
+            this.chkList.Size = new System.Drawing.Size(42, 17);
+            this.chkList.TabIndex = 34;
+            this.chkList.Text = "List";
+            this.chkList.UseVisualStyleBackColor = true;
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.tbSolutionPath);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.btnParse);
@@ -446,9 +466,48 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Solution";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(584, 61);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(23, 13);
+            this.label12.TabIndex = 35;
+            this.label12.Text = ".sln";
+            // 
+            // chkEdit
+            // 
+            this.chkEdit.AutoSize = true;
+            this.chkEdit.Location = new System.Drawing.Point(491, 88);
+            this.chkEdit.Name = "chkEdit";
+            this.chkEdit.Size = new System.Drawing.Size(44, 17);
+            this.chkEdit.TabIndex = 35;
+            this.chkEdit.Text = "Edit";
+            this.chkEdit.UseVisualStyleBackColor = true;
+            // 
+            // chkDetails
+            // 
+            this.chkDetails.AutoSize = true;
+            this.chkDetails.Location = new System.Drawing.Point(541, 88);
+            this.chkDetails.Name = "chkDetails";
+            this.chkDetails.Size = new System.Drawing.Size(58, 17);
+            this.chkDetails.TabIndex = 36;
+            this.chkDetails.Text = "Details";
+            this.chkDetails.UseVisualStyleBackColor = true;
+            // 
+            // chkCreate
+            // 
+            this.chkCreate.AutoSize = true;
+            this.chkCreate.Location = new System.Drawing.Point(428, 88);
+            this.chkCreate.Name = "chkCreate";
+            this.chkCreate.Size = new System.Drawing.Size(57, 17);
+            this.chkCreate.TabIndex = 37;
+            this.chkCreate.Text = "Create";
+            this.chkCreate.UseVisualStyleBackColor = true;
+            // 
             // CodeGenerator
             // 
-            this.ClientSize = new System.Drawing.Size(644, 677);
+            this.ClientSize = new System.Drawing.Size(644, 688);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -513,6 +572,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkList;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox chkCreate;
+        private System.Windows.Forms.CheckBox chkDetails;
+        private System.Windows.Forms.CheckBox chkEdit;
     }
 }
 

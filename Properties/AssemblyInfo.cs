@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CodeGenerator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Code Generator")]
+[assembly: AssemblyDescription("ASP.NET C# Code Generator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("SATS - UCSD")]
 [assembly: AssemblyProduct("CodeGenerator")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

@@ -27,7 +27,7 @@
     <PublisherName>SATS - UCSD</PublisherName>
     <SuiteName>Code Generator</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -64,6 +64,9 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>wizard.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Onion.SolutionParser.Parser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Onion.SolutionParser.Parser.1.0.0.0\lib\net45\Onion.SolutionParser.Parser.dll</HintPath>
@@ -85,13 +88,19 @@
   <ItemGroup>
     <Compile Include="Classes\Arguments.cs" />
     <Compile Include="Classes\Templates\Controller.cs" />
+    <Compile Include="Classes\Templates\Views\CreateView.cs" />
     <Compile Include="Classes\Templates\DataContract.cs" />
     <Compile Include="Classes\Templates\DataModel.cs" />
     <Compile Include="Classes\Templates\DomainContract.cs" />
     <Compile Include="Classes\Templates\DomainModel.cs" />
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\Templates\Script.cs" />
+    <Compile Include="Classes\Templates\Views\DetailsView.cs" />
+    <Compile Include="Classes\Templates\Views\EditView.cs" />
+    <Compile Include="Classes\Templates\Views\ListView.cs" />
+    <Compile Include="Classes\Templates\Views\View.cs" />
     <Compile Include="Classes\Templates\ViewModel.cs" />
+    <Compile Include="Classes\ViewBuilder.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +144,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Script.tt</DependentUpon>
     </Compile>
+    <Compile Include="Templates\UI\Views\CreateView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Views\DetailsView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Views\EditView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EditView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Views\ListView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Views\View.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>View.tt</DependentUpon>
+    </Compile>
     <Content Include="Templates\Core\Contracts\Domain\DomainContract.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DomainContract.cs</LastGenOutput>
@@ -159,6 +193,27 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Script.cs</LastGenOutput>
     </Content>
+    <Content Include="Templates\UI\Views\CreateView.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CreateView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Views\DetailsView.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DetailsView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Views\EditView.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EditView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Views\ListView.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ListView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Views\View.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>View.cs</LastGenOutput>
+    </Content>
+    <Content Include="wizard.ico" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\Tests\" />
-    <Folder Include="Templates\UI\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Templates\Core\Contracts\Data\DataContract.tt">
