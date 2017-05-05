@@ -1,13 +1,13 @@
 ﻿using CodeGenerator.Classes;
 using CodeGenerator.Classes.Templates;
 
-namespace CodeGenerator.Templates.UI.Views
+namespace CodeGenerator.Templates.UI.Scripts
 {
-    public partial class ListView : ITemplate
+    public partial class CreateScript : ITemplate
     {
         private Arguments m_data;
 
-        public ListView(Arguments data)
+        public CreateScript(Arguments data)
         {
             m_data = data;
         }

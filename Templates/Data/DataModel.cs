@@ -28,35 +28,82 @@ namespace CodeGenerator.Templates.Data
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("using ");
-            
-            #line 6 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
-            
-            #line default
-            #line hidden
-            this.Write(".Core.Data;\r\n\r\nnamespace ");
+            this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing ");
             
             #line 8 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
             
             #line default
             #line hidden
+            this.Write(".Core.Contracts.Data;\r\nusing ");
+            
+            #line 9 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            
+            #line default
+            #line hidden
+            this.Write(".Core.ViewModels;\r\n\r\nnamespace ");
+            
+            #line 11 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            
+            #line default
+            #line hidden
             this.Write(".Data\r\n{\r\n    public class ");
             
-            #line 10 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            #line 13 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Data : BaseData, I");
             
-            #line 10 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            #line 13 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
-            this.Write("Data\r\n    {\r\n    }\r\n}");
+            this.Write("Data\r\n    {\r\n\t\tprivate IEnumerable<");
+            
+            #line 15 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel> _allModels;\r\n\r\n\t\tpublic ");
+            
+            #line 17 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel GetById(int id)\r\n        {\r\n            throw new NotImplementedExcepti" +
+                    "on();\r\n        }\r\n\r\n\t\tpublic IEnumerable<");
+            
+            #line 22 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel> GetAll()\r\n        {\r\n            if (_allModels == null)\r\n            " +
+                    "{\r\n                _allModels = new List<");
+            
+            #line 26 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel>();\r\n            }\r\n\r\n            return _allModels;\r\n        }\r\n\r\n\t\tpu" +
+                    "blic bool Save(");
+            
+            #line 32 "C:\Projects\CodeGenerator\Templates\Data\DataModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel model)\r\n        {\r\n            throw new NotImplementedException();\r\n  " +
+                    "      }\r\n\r\n\t\tpublic bool Delete(int id)\r\n        {\r\n            throw new NotImp" +
+                    "lementedException();\r\n        }\r\n    }\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

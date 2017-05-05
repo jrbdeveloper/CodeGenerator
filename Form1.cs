@@ -9,20 +9,22 @@ using System.Windows.Forms;
 using System;
 using Onion.SolutionParser.Parser;
 using System.Collections.Generic;
-using CodeGenerator.Templates.UI.Scripts.Modules;
-using System.IO;
+using CodeGenerator.Templates.UI.Views;
+using CodeGenerator.Templates.UI.Scripts;
 
 namespace CodeGenerator
 {
-    public partial class CodeGenerator : Form
+    public partial class CodeGen : Form
     {
         private Arguments _arguments;
-        private const string INTERFACE_PREFIX = "I";
+        private Generator _generator;
+        
         private const string DATA_EXTENSION = "Data.cs";
         private const string DOMAIN_EXTENSION = "Domain.cs";
         private const string VIEW_MODEL_EXTENSION = "ViewModel.cs";
         private const string CONTROLLER_EXTENSION = "Controller.cs";
-        private const string SCRIPT_EXTENSION = ".js";
+        private const string VIEW_EXTENSION = ".cshtml";
+        private const string SCRIPT_EXTENSION = ".module.js";
 
         public Arguments Arguments
         {
@@ -39,7 +41,22 @@ namespace CodeGenerator
             set { _arguments = value; }
         }
 
-        public CodeGenerator()
+        public Generator Generator
+        {
+            get
+            {
+                if (_generator == null)
+                {
+                    _generator = new Generator(Arguments);
+                }
+
+                return _generator;
+            }
+
+            set { _generator = value; }
+        }
+
+        public CodeGen()
         {
             InitializeComponent();
         }
@@ -55,43 +72,7 @@ namespace CodeGenerator
             } else if (string.IsNullOrEmpty(tbVerticleName.Text)) {
                 lblStatus.Text = "Error - Please enter a Verticle Name";
             } else {
-                var solution = SolutionParser.Parse(Arguments.SolutionPath + "\\" + Arguments.SolutionName + ".sln");
-                var solutionProjects = solution.Projects;
-                var projects = new List<Project>() { new Project() };
-
-                foreach (var project in solutionProjects)
-                {
-                    projects.Add(new Project
-                    {
-                        Guid = project.Guid,
-                        Name = project.Name,
-                        Path = project.Path
-                    });
-                }
-
-                cbDataContracts.BindingContext = new BindingContext();
-                cbDataContracts.DataSource = projects;
-
-                cbDomainContracts.BindingContext = new BindingContext();
-                cbDomainContracts.DataSource = projects;
-
-                cbViewModels.BindingContext = new BindingContext();
-                cbViewModels.DataSource = projects;
-
-                cbDataModels.BindingContext = new BindingContext();
-                cbDataModels.DataSource = projects;
-
-                cbDomainModels.BindingContext = new BindingContext();
-                cbDomainModels.DataSource = projects;
-
-                cbControllers.BindingContext = new BindingContext();
-                cbControllers.DataSource = projects;
-
-                cbScriptModules.BindingContext = new BindingContext();
-                cbScriptModules.DataSource = projects;
-
-                cbViews.BindingContext = new BindingContext();
-                cbViews.DataSource = projects;
+                ParseSolution();
 
                 lblStatus.Text = "Continue by setting your configuration settings.";
                 btnGenerate.Enabled = true;
@@ -100,12 +81,9 @@ namespace CodeGenerator
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            GenerateCoreAssets();
-            GenerateDataModel();
-            GenerateDomainModel();
-            GenerateController();
-            GenerateView();
-            GenerateScript();
+            GenerateObjects();
+            GenerateViews();
+            GenerateScripts();
 
             lblStatus.Text = "Complete - Do not forget to include the new assets in your solution.";
         }
@@ -115,125 +93,228 @@ namespace CodeGenerator
             this.Close();
         }
 
-        private void GenerateCoreAssets()
+        private void GenerateObjects()
         {
-            GenerateDataContract();
-            GenerateDomainContract();
-            GenerateViewModel();
-        }
-
-        private void GenerateDataContract()
-        {
-            if (cbDataContracts.SelectedValue != null)
+            Generator.GenerateInterface(new GeneratorCriteria
             {
-                var template = new DataContract(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbDataContracts.SelectedValue + "\\";
-                var fileName = INTERFACE_PREFIX + Arguments.VerticleName + DATA_EXTENSION;
+                Template = new DataContract(Arguments),
+                Project = cbDataContracts,
+                FolderPath = tbDataContracts.Text,
+                Extension = DATA_EXTENSION,
+            });
 
-                fullPath += (!string.IsNullOrEmpty(tbDataContracts.Text)) ? tbDataContracts.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
-            }            
-        }
-
-        private void GenerateDomainContract()
-        {
-            if (cbDomainContracts.SelectedValue != null)
+            Generator.GenerateInterface(new GeneratorCriteria
             {
-                var template = new DomainContract(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbDomainContracts.SelectedValue + "\\";
-                var fileName = INTERFACE_PREFIX + Arguments.VerticleName + DOMAIN_EXTENSION;
+                Template = new DomainContract(Arguments),
+                Project = cbDomainContracts,
+                FolderPath = tbDomainContracts.Text,
+                Extension = DOMAIN_EXTENSION,
+            });
 
-                fullPath += (!string.IsNullOrEmpty(tbDomainContracts.Text)) ? tbDomainContracts.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
-            }            
-        }
-
-        private void GenerateViewModel()
-        {
-            if (cbViewModels.SelectedValue != null)
+            Generator.GenerateObject(new GeneratorCriteria
             {
-                var template = new ViewModel(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbViewModels.SelectedValue + "\\";
-                var fileName = Arguments.VerticleName + VIEW_MODEL_EXTENSION;
-
-                fullPath += (!string.IsNullOrEmpty(tbViewModels.Text)) ? tbViewModels.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
-            }            
-        }
-        
-        private void GenerateDataModel()
-        {
-            if (cbDataModels.SelectedValue != null)
+                Template = new ViewModel(Arguments),
+                Project = cbViewModels,
+                FolderPath = tbViewModels.Text,
+                Extension = VIEW_MODEL_EXTENSION,
+            });
+            
+            Generator.GenerateObject(new GeneratorCriteria
             {
-                var template = new DataModel(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbDataModels.SelectedValue + "\\";
-                var fileName = Arguments.VerticleName + DATA_EXTENSION;
+                Template = new DataModel(Arguments),
+                Project = cbDataModels,
+                FolderPath = tbDataModels.Text,
+                Extension = DATA_EXTENSION
+            });
 
-                fullPath += (!string.IsNullOrEmpty(tbDataModels.Text)) ? tbDataModels.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
-            }            
-        }
-
-        private void GenerateDomainModel()
-        {
-            if (cbDomainModels.SelectedValue != null)
+            Generator.GenerateObject(new GeneratorCriteria
             {
-                var template = new DomainModel(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbDomainModels.SelectedValue + "\\";
-                var fileName = Arguments.VerticleName + DOMAIN_EXTENSION;
+                Template = new DomainModel(Arguments),
+                Project = cbDomainModels,
+                FolderPath = tbDomainModels.Text,
+                Extension = DOMAIN_EXTENSION
+            });
 
-                fullPath += (!string.IsNullOrEmpty(tbDomainModels.Text)) ? tbDomainModels.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
-            }            
-        }
-
-        private void GenerateController()
-        {
-            if (cbControllers.SelectedValue != null)
+            Generator.GenerateObject(new GeneratorCriteria
             {
-                var template = new Controller(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbControllers.SelectedValue + "\\";
-                var fileName = Arguments.VerticleName + CONTROLLER_EXTENSION;
-
-                fullPath += (!string.IsNullOrEmpty(tbControllers.Text)) ? tbControllers.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
-            }            
+                Template = new Controller(Arguments),
+                Project = cbControllers,
+                FolderPath = tbControllers.Text,
+                Extension = CONTROLLER_EXTENSION
+            });
         }
 
-        private void GenerateView()
+        private void GenerateViews()
         {
             if (cbViews.SelectedValue != null)
             {
-                var viewBuilder = new ViewBuilder();
-                var chkbxList = new List<CheckBox>() { chkCreate, chkDetails, chkEdit, chkList };
-                var fullPath = Arguments.SolutionPath + "\\" + cbViews.SelectedValue + "\\";
-                fullPath += (!string.IsNullOrEmpty(tbViews.Text)) ? tbViews.Text + "\\" + Arguments.VerticleName + "\\" : string.Empty;
-
-                if (!Directory.Exists(fullPath))
+                if (chkCreate.Checked)
                 {
-                    Directory.CreateDirectory(fullPath);
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new CreateView(Arguments),
+                        Project = cbViews,
+                        FolderPath = tbViews.Text,
+                        ViewType = ViewType.Create,
+                        Extension = VIEW_EXTENSION,
+                    });
                 }
 
-                viewBuilder.AddCreateView(chkCreate, fullPath, Arguments);
-                viewBuilder.AddDetailsView(chkDetails, fullPath, Arguments);
-                viewBuilder.AddEditView(chkEdit, fullPath, Arguments);
-                viewBuilder.AddListView(chkList, fullPath, Arguments);
-                viewBuilder.AddSpecificView(chkbxList, fullPath, Arguments);
-            }            
+                if (chkDetails.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new DetailsView(Arguments),
+                        Project = cbViews,
+                        FolderPath = tbViews.Text,
+                        ViewType = ViewType.Details,
+                        Extension = VIEW_EXTENSION,
+                    });
+                }
+
+                if (chkEdit.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new EditView(Arguments),
+                        Project = cbViews,
+                        FolderPath = tbViews.Text,
+                        ViewType = ViewType.Edit,
+                        Extension = VIEW_EXTENSION,
+                    });
+                }
+
+                if (chkList.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new Templates.UI.Views.ListView(Arguments),
+                        Project = cbViews,
+                        FolderPath = tbViews.Text,
+                        ViewType = ViewType.List,
+                        Extension = VIEW_EXTENSION,
+                    });
+                }
+
+                if (!chkCreate.Checked && !chkDetails.Checked && !chkEdit.Checked && !chkList.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new Templates.UI.Views.View(Arguments),
+                        Project = cbViews,
+                        FolderPath = tbViews.Text,
+                        ViewType = ViewType.Specific,
+                        Extension = VIEW_EXTENSION,
+                    });
+                }
+            }
         }
 
-        private void GenerateScript()
+        private void GenerateScripts()
         {
             if (cbScriptModules.SelectedValue != null)
             {
-                var template = new Script(Arguments);
-                var fullPath = Arguments.SolutionPath + "\\" + cbScriptModules.SelectedValue + "\\";
-                var fileName = Arguments.VerticleName + SCRIPT_EXTENSION;
+                if (chkCreate.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new CreateScript(Arguments),
+                        Project = cbScriptModules,
+                        FolderPath = tbScriptModules.Text,
+                        ViewType = ViewType.Create,
+                        Extension = SCRIPT_EXTENSION,
+                    });
+                }
 
-                fullPath += (!string.IsNullOrEmpty(tbScriptModules.Text)) ? tbScriptModules.Text + "\\" : string.Empty;
-                File.WriteAllText(fullPath + fileName, template.TransformText());
+                if (chkDetails.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new DetailsScript(Arguments),
+                        Project = cbScriptModules,
+                        FolderPath = tbScriptModules.Text,
+                        ViewType = ViewType.Details,
+                        Extension = SCRIPT_EXTENSION,
+                    });
+                }
+
+                if (chkEdit.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new EditScript(Arguments),
+                        Project = cbScriptModules,
+                        FolderPath = tbScriptModules.Text,
+                        ViewType = ViewType.Edit,
+                        Extension = SCRIPT_EXTENSION,
+                    });
+                }
+
+                if (chkList.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new ListScript(Arguments),
+                        Project = cbScriptModules,
+                        FolderPath = tbScriptModules.Text,
+                        ViewType = ViewType.List,
+                        Extension = SCRIPT_EXTENSION,
+                    });
+                }
+
+                if (!chkCreate.Checked && !chkDetails.Checked && !chkEdit.Checked && !chkList.Checked)
+                {
+                    Generator.GenerateAsset(new GeneratorCriteria
+                    {
+                        Template = new Script(Arguments),
+                        Project = cbScriptModules,
+                        FolderPath = tbScriptModules.Text,
+                        ViewType = ViewType.Specific,
+                        Extension = SCRIPT_EXTENSION,
+                    });
+                }
+            }            
+        }
+
+        private void ParseSolution()
+        {
+            var solution = SolutionParser.Parse(Arguments.SolutionPath + "\\" + Arguments.SolutionName + ".sln");
+            var solutionProjects = solution.Projects;
+            var projects = new List<Project>() { new Project() };
+
+            foreach (var project in solutionProjects)
+            {
+                projects.Add(new Project
+                {
+                    Guid = project.Guid,
+                    Name = project.Name,
+                    Path = project.Path
+                });
             }
-            
+
+            cbDataContracts.BindingContext = new BindingContext();
+            cbDataContracts.DataSource = projects;
+
+            cbDomainContracts.BindingContext = new BindingContext();
+            cbDomainContracts.DataSource = projects;
+
+            cbViewModels.BindingContext = new BindingContext();
+            cbViewModels.DataSource = projects;
+
+            cbDataModels.BindingContext = new BindingContext();
+            cbDataModels.DataSource = projects;
+
+            cbDomainModels.BindingContext = new BindingContext();
+            cbDomainModels.DataSource = projects;
+
+            cbControllers.BindingContext = new BindingContext();
+            cbControllers.DataSource = projects;
+
+            cbScriptModules.BindingContext = new BindingContext();
+            cbScriptModules.DataSource = projects;
+
+            cbViews.BindingContext = new BindingContext();
+            cbViews.DataSource = projects;
         }
 
         private Arguments GetArguments()

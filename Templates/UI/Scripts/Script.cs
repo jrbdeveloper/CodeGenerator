@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace CodeGenerator.Templates.UI.Views
+namespace CodeGenerator.Templates.UI.Scripts
 {
     using System.Linq;
     using System.Text;
@@ -18,9 +18,9 @@ namespace CodeGenerator.Templates.UI.Views
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
+    #line 1 "C:\Projects\CodeGenerator\Templates\UI\Scripts\Script.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
-    public partial class CreateView : CreateViewBase
+    public partial class Script : ScriptBase
     {
 #line hidden
         /// <summary>
@@ -28,64 +28,32 @@ namespace CodeGenerator.Templates.UI.Views
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("@model ");
+            this.Write("$.widget(\"custom.");
             
-            #line 6 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
-            
-            #line default
-            #line hidden
-            this.Write(".Core.ViewModels.");
-            
-            #line 6 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
+            #line 6 "C:\Projects\CodeGenerator\Templates\UI\Scripts\Script.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
-            this.Write("ViewModel\r\n\r\n@{\r\n    ViewBag.Title = \"Create ");
-            
-            #line 9 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
-            
-            #line default
-            #line hidden
-            this.Write("\";\r\n}\r\n\r\n<h1>Create ");
-            
-            #line 12 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
-            
-            #line default
-            #line hidden
-            this.Write("</h1>\r\n<hr />\r\n\r\n<div class=\"container\" id=\"");
-            
-            #line 15 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
-            
-            #line default
-            #line hidden
-            this.Write("-create-container\">\r\n    \r\n</div>\r\n\r\n<script src=\"~/Scripts/Modules/");
-            
-            #line 19 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
-            
-            #line default
-            #line hidden
-            this.Write("/create.module.js\"></script>\r\n<script>\r\n    $(document).ready(function () {\r\n    " +
-                    "    $(\"#");
-            
-            #line 22 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
-            
-            #line default
-            #line hidden
-            this.Write("-create-container\").Create");
-            
-            #line 22 "C:\Projects\CodeGenerator\Templates\UI\Views\CreateView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
-            
-            #line default
-            #line hidden
-            this.Write("();\r\n    });\r\n</script>");
+            this.Write(@""", {
+    options: {
+        services: {}
+    },
+
+    _create: function () {
+        this.Application = Singleton.getInstance();
+        this._initializeControls();
+        this._registerEvents();
+    },
+
+    _registerEvents: function () {
+        var self = this;
+    },
+
+    _initializeControls: function () {
+
+    },
+});");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -97,7 +65,7 @@ namespace CodeGenerator.Templates.UI.Views
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
-    public class CreateViewBase
+    public class ScriptBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

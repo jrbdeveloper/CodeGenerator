@@ -3,11 +3,40 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-using <#= m_data.SolutionName #>.Core.Domain;
+using System.Collections.Generic;
+using <#= m_data.SolutionName #>.Core.Contracts.Data;
+using <#= m_data.SolutionName #>.Core.Contracts.Domain;
+using <#= m_data.SolutionName #>.Core.ViewModels;
 
 namespace <#= m_data.SolutionName #>.Domain
 {
     public class <#= m_data.VerticleName #>Domain : BaseModel, I<#= m_data.VerticleName #>Domain
     {
+        private I<#= m_data.VerticleName #>Data _data;
+
+        public <#= m_data.VerticleName #>Domain(I<#= m_data.VerticleName #>Data data)
+        {
+            _data = data;
+        }
+
+        public IEnumerable<<#= m_data.VerticleName #>ViewModel> GetAll()
+        {
+            return _data.GetAll();
+        }
+
+        public <#= m_data.VerticleName #>ViewModel GetById(int id)
+        {
+            return _data.GetById(id);
+        }
+
+        public bool Save(<#= m_data.VerticleName #>ViewModel model)
+        {
+            return _data.Save(model);
+        }
+
+        public bool Delete(int id)
+        {
+            return _data.Delete(id);
+        }
     }
 }

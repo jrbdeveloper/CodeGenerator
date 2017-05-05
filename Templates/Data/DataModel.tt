@@ -3,11 +3,40 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-using <#= m_data.SolutionName #>.Core.Data;
+using System;
+using System.Collections.Generic;
+using <#= m_data.SolutionName #>.Core.Contracts.Data;
+using <#= m_data.SolutionName #>.Core.ViewModels;
 
 namespace <#= m_data.SolutionName #>.Data
 {
     public class <#= m_data.VerticleName #>Data : BaseData, I<#= m_data.VerticleName #>Data
     {
+		private IEnumerable<<#= m_data.VerticleName #>ViewModel> _allModels;
+
+		public <#= m_data.VerticleName #>ViewModel GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+		public IEnumerable<<#= m_data.VerticleName #>ViewModel> GetAll()
+        {
+            if (_allModels == null)
+            {
+                _allModels = new List<<#= m_data.VerticleName #>ViewModel>();
+            }
+
+            return _allModels;
+        }
+
+		public bool Save(<#= m_data.VerticleName #>ViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+		public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

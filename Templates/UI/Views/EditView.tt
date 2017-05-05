@@ -16,9 +16,9 @@
     
 </div>
 
-<script src="~/Scripts/Modules/<#= m_data.VerticleName #>.module.js"></script>
+<script src="~/Scripts/Modules/<#= m_data.VerticleName #>/edit.module.js"></script>
 <script>
     $(document).ready(function () {
-        $("#<#= m_data.VerticleName #>-edit-container").<#= m_data.VerticleName #>();
+        $("#<#= m_data.VerticleName #>-edit-container").Edit<#= m_data.VerticleName #>();
     });
 </script>

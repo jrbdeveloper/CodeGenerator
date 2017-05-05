@@ -1,8 +1,9 @@
 ﻿using CodeGenerator.Classes;
+using CodeGenerator.Classes.Templates;
 
 namespace CodeGenerator.Templates.Core.ViewModel
 {
-    public partial class ViewModel
+    public partial class ViewModel : ITemplate
     {
         private Arguments m_data;
 

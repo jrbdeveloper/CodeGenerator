@@ -3,11 +3,16 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+using System.Collections.Generic;
+using <#= m_data.SolutionName #>.Core.ViewModels;
 
 namespace <#= m_data.SolutionName #>.Core.Contracts.Data
 {
     public interface I<#= m_data.VerticleName #>Data
     {
-	
+		IEnumerable<<#= m_data.VerticleName #>ViewModel> GetAll();
+        <#= m_data.VerticleName #>ViewModel GetById(int id);
+        bool Save(<#= m_data.VerticleName #>ViewModel model);
+        bool Delete(int id);
     }
 }

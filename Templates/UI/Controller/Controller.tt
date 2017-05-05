@@ -20,7 +20,45 @@ namespace <#= m_data.SolutionName #>.UI.Controllers
         
         public ActionResult Index()
         {
+			var list = _<#= m_data.VerticleName #>Domain.GetAll();
+            return View(list);
+        }
+
+		public ActionResult Create()
+        {
             return View();
+        }
+
+		public ActionResult Edit(int id)
+        {
+			var model = _<#= m_data.VerticleName #>Domain.GetById(id);
+            return View(model);
+        }
+
+		public ActionResult Details(int id)
+        {
+            var model = _<#= m_data.VerticleName #>Domain.GetById(id);
+            return View(model);
+        }
+
+		public ActionResult Save(<#= m_data.VerticleName #>ViewModel model)
+        {
+			if(_<#= m_data.VerticleName #>Domain.Save(model))
+			{
+				return View("Index");
+			}
+            
+			return View("Error");
+        }
+
+		public ActionResult Delete(int id)
+        {
+			if(_<#= m_data.VerticleName #>Domain.Delete(id))
+			{
+				return View("Index");
+			}
+            
+			return View("Error");
         }
     }
 }

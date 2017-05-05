@@ -27,7 +27,7 @@
     <PublisherName>SATS - UCSD</PublisherName>
     <SuiteName>Code Generator</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -87,20 +87,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Arguments.cs" />
+    <Compile Include="Classes\Generator.cs" />
+    <Compile Include="Classes\GeneratorCriteria.cs" />
     <Compile Include="Classes\Templates\Controller.cs" />
+    <Compile Include="Classes\Templates\ITemplate.cs" />
+    <Compile Include="Classes\Templates\Scripts\CreateScript.cs" />
+    <Compile Include="Classes\Templates\Scripts\DetailsScript.cs" />
+    <Compile Include="Classes\Templates\Scripts\EditScript.cs" />
+    <Compile Include="Classes\Templates\Scripts\ListScript.cs" />
+    <Compile Include="Classes\Templates\Scripts\Script.cs" />
     <Compile Include="Classes\Templates\Views\CreateView.cs" />
     <Compile Include="Classes\Templates\DataContract.cs" />
     <Compile Include="Classes\Templates\DataModel.cs" />
     <Compile Include="Classes\Templates\DomainContract.cs" />
     <Compile Include="Classes\Templates\DomainModel.cs" />
     <Compile Include="Classes\Project.cs" />
-    <Compile Include="Classes\Templates\Script.cs" />
     <Compile Include="Classes\Templates\Views\DetailsView.cs" />
     <Compile Include="Classes\Templates\Views\EditView.cs" />
     <Compile Include="Classes\Templates\Views\ListView.cs" />
     <Compile Include="Classes\Templates\Views\View.cs" />
     <Compile Include="Classes\Templates\ViewModel.cs" />
-    <Compile Include="Classes\ViewBuilder.cs" />
+    <Compile Include="Classes\ViewTypes.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,7 +146,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
-    <Compile Include="Templates\UI\Scripts\Modules\Script.cs">
+    <Compile Include="Templates\UI\Scripts\CreateScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Scripts\DetailsScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailsScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Scripts\EditScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EditScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Scripts\ListScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UI\Scripts\Script.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Script.tt</DependentUpon>
@@ -189,7 +216,23 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>
     </Content>
-    <Content Include="Templates\UI\Scripts\Modules\Script.tt">
+    <Content Include="Templates\UI\Scripts\CreateScript.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>CreateScript.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Scripts\DetailsScript.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DetailsScript.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Scripts\EditScript.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EditScript.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Scripts\ListScript.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ListScript.cs</LastGenOutput>
+    </Content>
+    <Content Include="Templates\UI\Scripts\Script.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>Script.cs</LastGenOutput>
     </Content>

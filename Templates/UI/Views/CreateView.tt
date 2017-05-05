@@ -16,9 +16,9 @@
     
 </div>
 
-<script src="~/Scripts/Modules/<#= m_data.VerticleName #>.module.js"></script>
+<script src="~/Scripts/Modules/<#= m_data.VerticleName #>/create.module.js"></script>
 <script>
     $(document).ready(function () {
-        $("#<#= m_data.VerticleName #>-create-container").<#= m_data.VerticleName #>();
+        $("#<#= m_data.VerticleName #>-create-container").Create<#= m_data.VerticleName #>();
     });
 </script>

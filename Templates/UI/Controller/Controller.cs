@@ -105,8 +105,57 @@ namespace CodeGenerator.Templates.UI.Controller
             
             #line default
             #line hidden
-            this.Write("Domain;\r\n        }\r\n        \r\n        public ActionResult Index()\r\n        {\r\n   " +
-                    "         return View();\r\n        }\r\n    }\r\n}");
+            this.Write("Domain;\r\n        }\r\n        \r\n        public ActionResult Index()\r\n        {\r\n\t\t\t" +
+                    "var list = _");
+            
+            #line 23 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Domain.GetAll();\r\n            return View(list);\r\n        }\r\n\r\n\t\tpublic ActionRes" +
+                    "ult Create()\r\n        {\r\n            return View();\r\n        }\r\n\r\n\t\tpublic Actio" +
+                    "nResult Edit(int id)\r\n        {\r\n\t\t\tvar model = _");
+            
+            #line 34 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Domain.GetById(id);\r\n            return View(model);\r\n        }\r\n\r\n\t\tpublic Actio" +
+                    "nResult Details(int id)\r\n        {\r\n            var model = _");
+            
+            #line 40 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Domain.GetById(id);\r\n            return View(model);\r\n        }\r\n\r\n\t\tpublic Actio" +
+                    "nResult Save(");
+            
+            #line 44 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel model)\r\n        {\r\n\t\t\tif(_");
+            
+            #line 46 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Domain.Save(model))\r\n\t\t\t{\r\n\t\t\t\treturn View(\"Index\");\r\n\t\t\t}\r\n            \r\n\t\t\tretu" +
+                    "rn View(\"Error\");\r\n        }\r\n\r\n\t\tpublic ActionResult Delete(int id)\r\n        {\r" +
+                    "\n\t\t\tif(_");
+            
+            #line 56 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Domain.Delete(id))\r\n\t\t\t{\r\n\t\t\t\treturn View(\"Index\");\r\n\t\t\t}\r\n            \r\n\t\t\tretur" +
+                    "n View(\"Error\");\r\n        }\r\n    }\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

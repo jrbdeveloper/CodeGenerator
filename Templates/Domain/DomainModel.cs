@@ -28,35 +28,96 @@ namespace CodeGenerator.Templates.Domain
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("using ");
+            this.Write("using System.Collections.Generic;\r\nusing ");
             
-            #line 6 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 7 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
             
             #line default
             #line hidden
-            this.Write(".Core.Domain;\r\n\r\nnamespace ");
+            this.Write(".Core.Contracts.Data;\r\nusing ");
             
             #line 8 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
             
             #line default
             #line hidden
+            this.Write(".Core.Contracts.Domain;\r\nusing ");
+            
+            #line 9 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            
+            #line default
+            #line hidden
+            this.Write(".Core.ViewModels;\r\n\r\nnamespace ");
+            
+            #line 11 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            
+            #line default
+            #line hidden
             this.Write(".Domain\r\n{\r\n    public class ");
             
-            #line 10 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 13 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain : BaseModel, I");
             
-            #line 10 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 13 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
-            this.Write("Domain\r\n    {\r\n    }\r\n}");
+            this.Write("Domain\r\n    {\r\n        private I");
+            
+            #line 15 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Data _data;\r\n\r\n        public ");
+            
+            #line 17 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Domain(I");
+            
+            #line 17 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("Data data)\r\n        {\r\n            _data = data;\r\n        }\r\n\r\n        public IEn" +
+                    "umerable<");
+            
+            #line 22 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel> GetAll()\r\n        {\r\n            return _data.GetAll();\r\n        }\r\n\r\n" +
+                    "        public ");
+            
+            #line 27 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel GetById(int id)\r\n        {\r\n            return _data.GetById(id);\r\n    " +
+                    "    }\r\n\r\n        public bool Save(");
+            
+            #line 32 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel model)\r\n        {\r\n            return _data.Save(model);\r\n        }\r\n\r\n" +
+                    "        public bool Delete(int id)\r\n        {\r\n            return _data.Delete(i" +
+                    "d);\r\n        }\r\n    }\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

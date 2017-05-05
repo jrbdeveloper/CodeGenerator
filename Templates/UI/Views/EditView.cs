@@ -70,15 +70,15 @@ namespace CodeGenerator.Templates.UI.Views
             
             #line default
             #line hidden
-            this.Write(".module.js\"></script>\r\n<script>\r\n    $(document).ready(function () {\r\n        $(\"" +
-                    "#");
+            this.Write("/edit.module.js\"></script>\r\n<script>\r\n    $(document).ready(function () {\r\n      " +
+                    "  $(\"#");
             
             #line 22 "C:\Projects\CodeGenerator\Templates\UI\Views\EditView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
-            this.Write("-edit-container\").");
+            this.Write("-edit-container\").Edit");
             
             #line 22 "C:\Projects\CodeGenerator\Templates\UI\Views\EditView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
