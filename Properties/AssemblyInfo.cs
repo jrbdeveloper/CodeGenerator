@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Code Generator")]
 [assembly: AssemblyDescription("ASP.NET C# Code Generator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("JRB Development")]
+[assembly: AssemblyCompany("SATS - UCSD")]
 [assembly: AssemblyProduct("CodeGenerator")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

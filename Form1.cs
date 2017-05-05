@@ -30,10 +30,7 @@ namespace CodeGenerator
         {
             get
             {
-                if (_arguments == null)
-                {
-                    _arguments = GetArguments();
-                }
+                _arguments = GetArguments();
 
                 return _arguments;
             }
