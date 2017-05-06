@@ -4,21 +4,20 @@ namespace CodeGenerator.Classes
 {
     public class Generator
     {
-        private const string INTERFACE_PREFIX = "I";        
-
-        public Arguments Arguments { get; set; }
+        private const string INTERFACE_PREFIX = "I";
+        private Arguments _arguments;
 
         public Generator(Arguments args)
         {
-            Arguments = args;
+            _arguments = args;
         }
 
         public void GenerateInterface(GeneratorCriteria criteria)
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = INTERFACE_PREFIX + Arguments.VerticleName + criteria.Extension;
+                var filePath = _arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var fileName = INTERFACE_PREFIX + _arguments.VerticleName + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
@@ -37,8 +36,8 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = Arguments.VerticleName + criteria.Extension;
+                var filePath = _arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var fileName = _arguments.VerticleName + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
@@ -57,12 +56,12 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = DetermineViewType(criteria.ViewType, Arguments) + criteria.Extension;
+                var filePath = _arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var fileName = DetermineViewType(criteria.ViewType, _arguments) + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
-                    filePath += criteria.FolderPath + "\\" + Arguments.VerticleName + "\\";
+                    filePath += criteria.FolderPath + "\\" + _arguments.VerticleName + "\\";
                     CreateDirectoryIfAbsent(filePath);
                 }
 
