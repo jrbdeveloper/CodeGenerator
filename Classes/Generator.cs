@@ -17,16 +17,19 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var fullPath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var filePath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
                 var fileName = INTERFACE_PREFIX + Arguments.VerticleName + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
-                    fullPath += criteria.FolderPath + "\\";
-                    CreateDirectoryIfAbsent(fullPath);
-                }                
+                    filePath += criteria.FolderPath + "\\";
+                    CreateDirectoryIfAbsent(filePath);
+                }
 
-                File.WriteAllText(fullPath + fileName, criteria.Template.TransformText());
+                if (CanWriteFile(filePath + fileName))
+                {
+                    File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
+                }
             }
         }
 
@@ -34,16 +37,19 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var fullPath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var filePath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
                 var fileName = Arguments.VerticleName + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
-                    fullPath += criteria.FolderPath + "\\";
-                    CreateDirectoryIfAbsent(fullPath);
-                }                
+                    filePath += criteria.FolderPath + "\\";
+                    CreateDirectoryIfAbsent(filePath);
+                }
 
-                File.WriteAllText(fullPath + fileName, criteria.Template.TransformText());
+                if (CanWriteFile(filePath + fileName))
+                {
+                    File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
+                }              
             }
         }
         
@@ -51,16 +57,19 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var fullPath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var filePath = Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
                 var fileName = DetermineViewType(criteria.ViewType, Arguments) + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
-                    fullPath += criteria.FolderPath + "\\" + Arguments.VerticleName + "\\";
-                    CreateDirectoryIfAbsent(fullPath);
+                    filePath += criteria.FolderPath + "\\" + Arguments.VerticleName + "\\";
+                    CreateDirectoryIfAbsent(filePath);
                 }
 
-                File.WriteAllText(fullPath + fileName, criteria.Template.TransformText());
+                if (CanWriteFile(filePath + fileName))
+                {
+                    File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
+                }
             }            
         }
 
@@ -96,6 +105,21 @@ namespace CodeGenerator.Classes
             }
 
             return returnVal;
+        }
+
+        private bool CanWriteFile(string file)
+        {
+            if (File.Exists(file))
+            {
+                var fileInfo = new FileInfo(file);
+
+                if (fileInfo.IsReadOnly)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void CreateDirectoryIfAbsent(string path)
