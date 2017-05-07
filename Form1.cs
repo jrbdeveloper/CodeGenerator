@@ -59,6 +59,7 @@ namespace CodeGenerator
                 ParseSolution();
 
                 lblStatus.Text = "Continue by setting your configuration settings.";
+                MessageBox.Show("Ready - Review the status field.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnGenerate.Enabled = true;
             }
         }
@@ -350,11 +351,13 @@ namespace CodeGenerator
             if (!string.IsNullOrEmpty(Generator.Error))
             {
                 lblStatus.Text = Generator.Error;
+                MessageBox.Show("Error - Review the status field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Generator.Error = string.Empty;
             }
             else
             {
                 lblStatus.Text = "Complete - Do not forget to include the new assets in your solution.";
+                MessageBox.Show("Success - Review the status field.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
