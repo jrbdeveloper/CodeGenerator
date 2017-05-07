@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace CodeGenerator.Classes
+﻿namespace CodeGenerator.Classes
 {
     public class Generator
     {
@@ -17,23 +15,19 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = criteria.Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var file = new FileLibrary();
+                var filePath = file.GetFilePath(criteria);
                 var fileName = INTERFACE_PREFIX + criteria.Arguments.VerticleName + criteria.Extension;
-
+                
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
                     filePath += criteria.FolderPath + "\\";
-                    CreateDirectoryIfAbsent(filePath);
+                    file.CreateDirectory(filePath);
                 }
 
-                if (CanWriteFile(filePath + fileName))
-                {
-                    File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
-                }
-                else
-                {
-                    Error = ERROR_MESSAGE + "[" + fileName + "]";
-                }
+                var fullPath = file.GetFullPath(filePath, fileName);
+
+                WriteFile(file, fileName, fullPath, criteria);
             }
         }
 
@@ -41,23 +35,19 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = criteria.Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var file = new FileLibrary();
+                var filePath = file.GetFilePath(criteria);
                 var fileName = criteria.Arguments.VerticleName + criteria.Extension;
-
+                
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
                     filePath += criteria.FolderPath + "\\";
-                    CreateDirectoryIfAbsent(filePath);
+                    file.CreateDirectory(filePath);
                 }
 
-                if (CanWriteFile(filePath + fileName))
-                {
-                    File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
-                }
-                else
-                {
-                    Error = ERROR_MESSAGE + "[" + fileName + "]";
-                }
+                var fullPath = file.GetFullPath(filePath, fileName);
+
+                WriteFile(file, fileName, fullPath, criteria);
             }
         }
         
@@ -65,80 +55,34 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = criteria.Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = DetermineViewType(criteria.ViewType, criteria.Arguments) + criteria.Extension;
-
+                var file = new FileLibrary();
+                var filePath = file.GetFilePath(criteria);
+                var fileName = file.DetermineName(criteria.ViewType, criteria.Arguments) + criteria.Extension;
+                
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
                     filePath += criteria.FolderPath + "\\" + criteria.Arguments.VerticleName + "\\";
-                    CreateDirectoryIfAbsent(filePath);
+                    file.CreateDirectory(filePath);
                 }
 
-                if (CanWriteFile(filePath + fileName))
-                {
-                    File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
-                }
-                else
-                {
-                    Error = ERROR_MESSAGE + "[" + fileName + "]";
-                }
+                var fullPath = file.GetFullPath(filePath, fileName);
+
+                WriteFile(file, fileName, fullPath, criteria);
             }            
         }
 
-        private string DetermineViewType(ViewType type, Arguments args)
+        private void WriteFile(FileLibrary file, string fileName, string fullPath, GeneratorCriteria criteria)
         {
-            var returnVal = string.Empty;
-
-            switch (type)
+            if (file.CanWrite(fullPath))
             {
-                case ViewType.Create:
-                    returnVal = "Create";
-                    break;
-
-                case ViewType.Details:
-                    returnVal = "Details";
-                    break;
-
-                case ViewType.Edit:
-                    returnVal = "Edit";
-                    break;
-
-                case ViewType.List:
-                    returnVal = "Index";
-                    break;
-
-                case ViewType.Specific:
-                    returnVal = args.VerticleName;
-                    break;
-
-                default:
-                    returnVal = args.VerticleName;
-                    break;
-            }
-
-            return returnVal;
-        }
-
-        private bool CanWriteFile(string file)
-        {
-            if (File.Exists(file))
-            {
-                var fileInfo = new FileInfo(file);
-
-                if (fileInfo.IsReadOnly)
+                if (file.CanGenerate(fullPath, criteria.ReGenCheck))
                 {
-                    return false;
+                    file.Write(fullPath, criteria);
                 }
             }
-
-            return true;
-        }
-
-        private void CreateDirectoryIfAbsent(string path)
-        {
-            if (!Directory.Exists(path))
+            else
             {
-                Directory.CreateDirectory(path);
+                Error = ERROR_MESSAGE + "[" + fileName + "]";
             }
         }
     }

@@ -72,17 +72,17 @@
             this.chkList = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkReGenDataContract = new System.Windows.Forms.CheckBox();
+            this.chkReGenDataModel = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkReGenDomainModel = new System.Windows.Forms.CheckBox();
+            this.chkReGenDomainContract = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.chkReGenScripts = new System.Windows.Forms.CheckBox();
+            this.chkReGenController = new System.Windows.Forms.CheckBox();
+            this.chkReGenViews = new System.Windows.Forms.CheckBox();
+            this.chkReGenViewModel = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -519,28 +519,28 @@
             this.label12.TabIndex = 35;
             this.label12.Text = ".sln";
             // 
-            // checkBox1
+            // chkReGenDataContract
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(22, 28);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkReGenDataContract.AutoSize = true;
+            this.chkReGenDataContract.Location = new System.Drawing.Point(22, 28);
+            this.chkReGenDataContract.Name = "chkReGenDataContract";
+            this.chkReGenDataContract.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenDataContract.TabIndex = 24;
+            this.chkReGenDataContract.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chkReGenDataModel
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(22, 64);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 25;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkReGenDataModel.AutoSize = true;
+            this.chkReGenDataModel.Location = new System.Drawing.Point(22, 64);
+            this.chkReGenDataModel.Name = "chkReGenDataModel";
+            this.chkReGenDataModel.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenDataModel.TabIndex = 25;
+            this.chkReGenDataModel.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.checkBox2);
-            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.Controls.Add(this.chkReGenDataModel);
+            this.groupBox5.Controls.Add(this.chkReGenDataContract);
             this.groupBox5.Location = new System.Drawing.Point(577, 216);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(66, 100);
@@ -550,8 +550,8 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.checkBox4);
-            this.groupBox6.Controls.Add(this.checkBox3);
+            this.groupBox6.Controls.Add(this.chkReGenDomainModel);
+            this.groupBox6.Controls.Add(this.chkReGenDomainContract);
             this.groupBox6.Location = new System.Drawing.Point(577, 333);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(66, 100);
@@ -559,12 +559,30 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Re-Gen";
             // 
+            // chkReGenDomainModel
+            // 
+            this.chkReGenDomainModel.AutoSize = true;
+            this.chkReGenDomainModel.Location = new System.Drawing.Point(22, 64);
+            this.chkReGenDomainModel.Name = "chkReGenDomainModel";
+            this.chkReGenDomainModel.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenDomainModel.TabIndex = 1;
+            this.chkReGenDomainModel.UseVisualStyleBackColor = true;
+            // 
+            // chkReGenDomainContract
+            // 
+            this.chkReGenDomainContract.AutoSize = true;
+            this.chkReGenDomainContract.Location = new System.Drawing.Point(22, 28);
+            this.chkReGenDomainContract.Name = "chkReGenDomainContract";
+            this.chkReGenDomainContract.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenDomainContract.TabIndex = 0;
+            this.chkReGenDomainContract.UseVisualStyleBackColor = true;
+            // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.checkBox8);
-            this.groupBox7.Controls.Add(this.checkBox7);
-            this.groupBox7.Controls.Add(this.checkBox6);
-            this.groupBox7.Controls.Add(this.checkBox5);
+            this.groupBox7.Controls.Add(this.chkReGenScripts);
+            this.groupBox7.Controls.Add(this.chkReGenController);
+            this.groupBox7.Controls.Add(this.chkReGenViews);
+            this.groupBox7.Controls.Add(this.chkReGenViewModel);
             this.groupBox7.Location = new System.Drawing.Point(577, 449);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(66, 196);
@@ -572,59 +590,41 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Re-Gen";
             // 
-            // checkBox3
+            // chkReGenScripts
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(22, 28);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(15, 14);
-            this.checkBox3.TabIndex = 0;
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chkReGenScripts.AutoSize = true;
+            this.chkReGenScripts.Location = new System.Drawing.Point(22, 158);
+            this.chkReGenScripts.Name = "chkReGenScripts";
+            this.chkReGenScripts.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenScripts.TabIndex = 3;
+            this.chkReGenScripts.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // chkReGenController
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(22, 64);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(15, 14);
-            this.checkBox4.TabIndex = 1;
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.chkReGenController.AutoSize = true;
+            this.chkReGenController.Location = new System.Drawing.Point(22, 121);
+            this.chkReGenController.Name = "chkReGenController";
+            this.chkReGenController.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenController.TabIndex = 2;
+            this.chkReGenController.UseVisualStyleBackColor = true;
             // 
-            // checkBox5
+            // chkReGenViews
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(22, 28);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(15, 14);
-            this.checkBox5.TabIndex = 0;
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.chkReGenViews.AutoSize = true;
+            this.chkReGenViews.Location = new System.Drawing.Point(22, 65);
+            this.chkReGenViews.Name = "chkReGenViews";
+            this.chkReGenViews.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenViews.TabIndex = 1;
+            this.chkReGenViews.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // chkReGenViewModel
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(22, 65);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(15, 14);
-            this.checkBox6.TabIndex = 1;
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(22, 121);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(15, 14);
-            this.checkBox7.TabIndex = 2;
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(22, 158);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(15, 14);
-            this.checkBox8.TabIndex = 3;
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.chkReGenViewModel.AutoSize = true;
+            this.chkReGenViewModel.Location = new System.Drawing.Point(22, 28);
+            this.chkReGenViewModel.Name = "chkReGenViewModel";
+            this.chkReGenViewModel.Size = new System.Drawing.Size(15, 14);
+            this.chkReGenViewModel.TabIndex = 0;
+            this.chkReGenViewModel.UseVisualStyleBackColor = true;
             // 
             // CodeGen
             // 
@@ -707,17 +707,17 @@
         private System.Windows.Forms.CheckBox chkCreate;
         private System.Windows.Forms.CheckBox chkDetails;
         private System.Windows.Forms.CheckBox chkEdit;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkReGenDataContract;
+        private System.Windows.Forms.CheckBox chkReGenDataModel;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox chkReGenDomainModel;
+        private System.Windows.Forms.CheckBox chkReGenDomainContract;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox chkReGenScripts;
+        private System.Windows.Forms.CheckBox chkReGenController;
+        private System.Windows.Forms.CheckBox chkReGenViews;
+        private System.Windows.Forms.CheckBox chkReGenViewModel;
     }
 }
 

@@ -16,5 +16,7 @@ namespace CodeGenerator.Classes
         public ViewType ViewType { get; set; }
 
         public Arguments Arguments { get; set; }
+
+        public CheckBox ReGenCheck { get; set; }
     }
 }

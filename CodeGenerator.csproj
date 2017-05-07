@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Arguments.cs" />
+    <Compile Include="Classes\FileLibrary.cs" />
     <Compile Include="Classes\Generator.cs" />
     <Compile Include="Classes\GeneratorCriteria.cs" />
     <Compile Include="Classes\Templates\Controller.cs" />

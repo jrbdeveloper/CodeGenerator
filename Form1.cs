@@ -86,6 +86,7 @@ namespace CodeGenerator
                 FolderPath = tbDataContracts.Text,
                 Extension = DATA_EXTENSION,
                 Arguments = GetArguments(cbDataContracts, tbDataContracts),
+                ReGenCheck = chkReGenDataContract
             });
 
             Generator.GenerateInterface(new GeneratorCriteria
@@ -94,7 +95,8 @@ namespace CodeGenerator
                 Project = cbDomainContracts,
                 FolderPath = tbDomainContracts.Text,
                 Extension = DOMAIN_EXTENSION,
-                Arguments = GetArguments(cbDomainContracts, tbDomainContracts)
+                Arguments = GetArguments(cbDomainContracts, tbDomainContracts),
+                ReGenCheck = chkReGenDomainContract
             });
 
             Generator.GenerateObject(new GeneratorCriteria
@@ -103,7 +105,8 @@ namespace CodeGenerator
                 Project = cbViewModels,
                 FolderPath = tbViewModels.Text,
                 Extension = VIEW_MODEL_EXTENSION,
-                Arguments = GetArguments(cbViewModels, tbViewModels)
+                Arguments = GetArguments(cbViewModels, tbViewModels),
+                ReGenCheck = chkReGenViewModel
             });
 
             Generator.GenerateObject(new GeneratorCriteria
@@ -112,7 +115,8 @@ namespace CodeGenerator
                 Project = cbDataModels,
                 FolderPath = tbDataModels.Text,
                 Extension = DATA_EXTENSION,
-                Arguments = GetArguments(cbDataModels, tbDataModels)
+                Arguments = GetArguments(cbDataModels, tbDataModels),
+                ReGenCheck = chkReGenDataModel
             });
 
             Generator.GenerateObject(new GeneratorCriteria
@@ -121,7 +125,8 @@ namespace CodeGenerator
                 Project = cbDomainModels,
                 FolderPath = tbDomainModels.Text,
                 Extension = DOMAIN_EXTENSION,
-                Arguments = GetArguments(cbDomainModels, tbDomainModels)
+                Arguments = GetArguments(cbDomainModels, tbDomainModels),
+                ReGenCheck = chkReGenDomainModel
             });
 
             Generator.GenerateObject(new GeneratorCriteria
@@ -130,7 +135,8 @@ namespace CodeGenerator
                 Project = cbControllers,
                 FolderPath = tbControllers.Text,
                 Extension = CONTROLLER_EXTENSION,
-                Arguments = GetArguments(cbControllers, tbControllers)
+                Arguments = GetArguments(cbControllers, tbControllers),
+                ReGenCheck = chkReGenController
             });
         }
 
@@ -147,7 +153,8 @@ namespace CodeGenerator
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Create,
                         Extension = VIEW_EXTENSION,
-                        Arguments = GetArguments(cbViews, tbViews)
+                        Arguments = GetArguments(cbViews, tbViews),
+                        ReGenCheck = chkReGenViews
                     });
                 }
 
@@ -160,7 +167,8 @@ namespace CodeGenerator
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Details,
                         Extension = VIEW_EXTENSION,
-                        Arguments = GetArguments(cbViews, tbViews)
+                        Arguments = GetArguments(cbViews, tbViews),
+                        ReGenCheck = chkReGenViews
                     });
                 }
 
@@ -173,7 +181,8 @@ namespace CodeGenerator
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Edit,
                         Extension = VIEW_EXTENSION,
-                        Arguments = GetArguments(cbViews, tbViews)
+                        Arguments = GetArguments(cbViews, tbViews),
+                        ReGenCheck = chkReGenViews
                     });
                 }
 
@@ -186,7 +195,8 @@ namespace CodeGenerator
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.List,
                         Extension = VIEW_EXTENSION,
-                        Arguments = GetArguments(cbViews, tbViews)
+                        Arguments = GetArguments(cbViews, tbViews),
+                        ReGenCheck = chkReGenViews
                     });
                 }
 
@@ -199,7 +209,8 @@ namespace CodeGenerator
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Specific,
                         Extension = VIEW_EXTENSION,
-                        Arguments = GetArguments(cbViews, tbViews)
+                        Arguments = GetArguments(cbViews, tbViews),
+                        ReGenCheck = chkReGenViews
                     });
                 }
             }
@@ -218,7 +229,8 @@ namespace CodeGenerator
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Create,
                         Extension = SCRIPT_EXTENSION,
-                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules),
+                        ReGenCheck = chkReGenScripts
                     });
                 }
 
@@ -231,7 +243,8 @@ namespace CodeGenerator
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Details,
                         Extension = SCRIPT_EXTENSION,
-                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules),
+                        ReGenCheck = chkReGenScripts
                     });
                 }
 
@@ -244,7 +257,8 @@ namespace CodeGenerator
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Edit,
                         Extension = SCRIPT_EXTENSION,
-                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules),
+                        ReGenCheck = chkReGenScripts
                     });
                 }
 
@@ -257,7 +271,8 @@ namespace CodeGenerator
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.List,
                         Extension = SCRIPT_EXTENSION,
-                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules),
+                        ReGenCheck = chkReGenScripts
                     });
                 }
 
@@ -270,7 +285,8 @@ namespace CodeGenerator
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Specific,
                         Extension = SCRIPT_EXTENSION,
-                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules),
+                        ReGenCheck = chkReGenScripts
                     });
                 }
             }            
