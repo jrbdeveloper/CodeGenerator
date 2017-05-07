@@ -18,7 +18,7 @@ namespace CodeGenerator.Templates.UI.Controller
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+    #line 1 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class Controller : ControllerBase
     {
@@ -30,77 +30,77 @@ namespace CodeGenerator.Templates.UI.Controller
         {
             this.Write("using ");
             
-            #line 6 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 6 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.DomainContracts));
             
             #line default
             #line hidden
-            this.Write(".Core.Contracts.Domain;\r\nusing ");
+            this.Write(";\r\nusing ");
             
-            #line 7 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
-            
-            #line default
-            #line hidden
-            this.Write(".Core.ViewModels;\r\nusing System.Web.Mvc;\r\n\r\nnamespace ");
-            
-            #line 10 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 7 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.ViewModels));
             
             #line default
             #line hidden
-            this.Write(".UI.Controllers\r\n{\r\n    public class ");
+            this.Write(";\r\nusing System.Web.Mvc;\r\n\r\nnamespace ");
             
-            #line 12 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 10 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.Namespace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    public class ");
+            
+            #line 12 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Controller : BaseController\r\n    {\r\n        private I");
             
-            #line 14 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 14 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain _");
             
-            #line 14 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 14 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain;\r\n\r\n        public ");
             
-            #line 16 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 16 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Controller(I");
             
-            #line 16 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 16 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain ");
             
-            #line 16 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 16 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain)\r\n        {\r\n            _");
             
-            #line 18 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 18 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain = ");
             
-            #line 18 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 18 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -108,7 +108,7 @@ namespace CodeGenerator.Templates.UI.Controller
             this.Write("Domain;\r\n        }\r\n        \r\n        public ActionResult Index()\r\n        {\r\n\t\t\t" +
                     "var list = _");
             
-            #line 23 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 23 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -117,7 +117,7 @@ namespace CodeGenerator.Templates.UI.Controller
                     "ult Create()\r\n        {\r\n            return View();\r\n        }\r\n\r\n\t\tpublic Actio" +
                     "nResult Edit(int id)\r\n        {\r\n\t\t\tvar model = _");
             
-            #line 34 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 34 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -125,7 +125,7 @@ namespace CodeGenerator.Templates.UI.Controller
             this.Write("Domain.GetById(id);\r\n            return View(model);\r\n        }\r\n\r\n\t\tpublic Actio" +
                     "nResult Details(int id)\r\n        {\r\n            var model = _");
             
-            #line 40 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 40 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -133,14 +133,14 @@ namespace CodeGenerator.Templates.UI.Controller
             this.Write("Domain.GetById(id);\r\n            return View(model);\r\n        }\r\n\r\n\t\tpublic Actio" +
                     "nResult Save(");
             
-            #line 44 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 44 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("ViewModel model)\r\n        {\r\n\t\t\tif(_");
             
-            #line 46 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 46 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -149,7 +149,7 @@ namespace CodeGenerator.Templates.UI.Controller
                     "rn View(\"Error\");\r\n        }\r\n\r\n\t\tpublic ActionResult Delete(int id)\r\n        {\r" +
                     "\n\t\t\tif(_");
             
-            #line 56 "C:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
+            #line 56 "D:\Projects\CodeGenerator\Templates\UI\Controller\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default

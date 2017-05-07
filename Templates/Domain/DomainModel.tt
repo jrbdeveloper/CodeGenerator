@@ -4,11 +4,11 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using System.Collections.Generic;
-using <#= m_data.SolutionName #>.Core.Contracts.Data;
-using <#= m_data.SolutionName #>.Core.Contracts.Domain;
-using <#= m_data.SolutionName #>.Core.ViewModels;
+using <#= m_data.DataContracts #>;
+using <#= m_data.DomainContracts #>;
+using <#= m_data.ViewModels #>;
 
-namespace <#= m_data.SolutionName #>.Domain
+namespace <#= m_data.Namespace #>
 {
     public class <#= m_data.VerticleName #>Domain : BaseModel, I<#= m_data.VerticleName #>Domain
     {

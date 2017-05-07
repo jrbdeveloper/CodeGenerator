@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-@model <#= m_data.SolutionName #>.Core.ViewModels.<#= m_data.VerticleName #>ViewModel
+@model <#= m_data.ViewModels #>.<#= m_data.VerticleName #>ViewModel
 
 @{
     ViewBag.Title = "Edit <#= m_data.VerticleName #>";

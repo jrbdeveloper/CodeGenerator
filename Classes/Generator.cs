@@ -4,20 +4,21 @@ namespace CodeGenerator.Classes
 {
     public class Generator
     {
+        private const string ERROR_MESSAGE = "File exists and/or protected. Verify and try again. ";
         private const string INTERFACE_PREFIX = "I";
-        private Arguments _arguments;
 
-        public Generator(Arguments args)
+        public Generator()
         {
-            _arguments = args;
         }
+
+        public string Error { get; set; }
 
         public void GenerateInterface(GeneratorCriteria criteria)
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = _arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = INTERFACE_PREFIX + _arguments.VerticleName + criteria.Extension;
+                var filePath = criteria.Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var fileName = INTERFACE_PREFIX + criteria.Arguments.VerticleName + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
@@ -28,6 +29,10 @@ namespace CodeGenerator.Classes
                 if (CanWriteFile(filePath + fileName))
                 {
                     File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
+                }
+                else
+                {
+                    Error = ERROR_MESSAGE + "[" + fileName + "]";
                 }
             }
         }
@@ -36,8 +41,8 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = _arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = _arguments.VerticleName + criteria.Extension;
+                var filePath = criteria.Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var fileName = criteria.Arguments.VerticleName + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
@@ -48,7 +53,11 @@ namespace CodeGenerator.Classes
                 if (CanWriteFile(filePath + fileName))
                 {
                     File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
-                }              
+                }
+                else
+                {
+                    Error = ERROR_MESSAGE + "[" + fileName + "]";
+                }
             }
         }
         
@@ -56,18 +65,22 @@ namespace CodeGenerator.Classes
         {
             if (criteria.Project.SelectedValue != null)
             {
-                var filePath = _arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
-                var fileName = DetermineViewType(criteria.ViewType, _arguments) + criteria.Extension;
+                var filePath = criteria.Arguments.SolutionPath + "\\" + criteria.Project.SelectedValue + "\\";
+                var fileName = DetermineViewType(criteria.ViewType, criteria.Arguments) + criteria.Extension;
 
                 if (!string.IsNullOrEmpty(criteria.FolderPath))
                 {
-                    filePath += criteria.FolderPath + "\\" + _arguments.VerticleName + "\\";
+                    filePath += criteria.FolderPath + "\\" + criteria.Arguments.VerticleName + "\\";
                     CreateDirectoryIfAbsent(filePath);
                 }
 
                 if (CanWriteFile(filePath + fileName))
                 {
                     File.WriteAllText(filePath + fileName, criteria.Template.TransformText());
+                }
+                else
+                {
+                    Error = ERROR_MESSAGE + "[" + fileName + "]";
                 }
             }            
         }

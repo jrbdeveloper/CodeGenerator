@@ -18,7 +18,7 @@ namespace CodeGenerator.Templates.Core.Contracts.Data
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+    #line 1 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class DataContract : DataContractBase
     {
@@ -30,42 +30,42 @@ namespace CodeGenerator.Templates.Core.Contracts.Data
         {
             this.Write("using System.Collections.Generic;\r\nusing ");
             
-            #line 7 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 7 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.ViewModels));
             
             #line default
             #line hidden
-            this.Write(".Core.ViewModels;\r\n\r\nnamespace ");
+            this.Write(";\r\n\r\nnamespace ");
             
-            #line 9 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 9 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.Namespace));
             
             #line default
             #line hidden
-            this.Write(".Core.Contracts.Data\r\n{\r\n    public interface I");
+            this.Write("\r\n{\r\n    public interface I");
             
-            #line 11 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+            #line 11 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Data\r\n    {\r\n\t\tIEnumerable<");
             
-            #line 13 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+            #line 13 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("ViewModel> GetAll();\r\n        ");
             
-            #line 14 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+            #line 14 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("ViewModel GetById(int id);\r\n        bool Save(");
             
-            #line 15 "C:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
+            #line 15 "D:\Projects\CodeGenerator\Templates\Core\Contracts\Data\DataContract.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default

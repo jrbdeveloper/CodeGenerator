@@ -16,7 +16,6 @@ namespace CodeGenerator
 {
     public partial class CodeGen : Form
     {
-        private Arguments _arguments;
         private Generator _generator;
         
         private const string DATA_EXTENSION = "Data.cs";
@@ -26,25 +25,13 @@ namespace CodeGenerator
         private const string VIEW_EXTENSION = ".cshtml";
         private const string SCRIPT_EXTENSION = ".module.js";
 
-        public Arguments Arguments
-        {
-            get
-            {
-                _arguments = GetArguments();
-
-                return _arguments;
-            }
-
-            set { _arguments = value; }
-        }
-
         public Generator Generator
         {
             get
             {
                 if (_generator == null)
                 {
-                    _generator = new Generator(Arguments);
+                    _generator = new Generator();
                 }
 
                 return _generator;
@@ -81,8 +68,7 @@ namespace CodeGenerator
             GenerateObjects();
             GenerateViews();
             GenerateScripts();
-
-            lblStatus.Text = "Complete - Do not forget to include the new assets in your solution.";
+            ShowMessage();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -94,50 +80,56 @@ namespace CodeGenerator
         {
             Generator.GenerateInterface(new GeneratorCriteria
             {
-                Template = new DataContract(Arguments),
+                Template = new DataContract(GetArguments(cbDataContracts, tbDataContracts)),
                 Project = cbDataContracts,
                 FolderPath = tbDataContracts.Text,
                 Extension = DATA_EXTENSION,
+                Arguments = GetArguments(cbDataContracts, tbDataContracts),
             });
 
             Generator.GenerateInterface(new GeneratorCriteria
             {
-                Template = new DomainContract(Arguments),
+                Template = new DomainContract(GetArguments(cbDomainContracts, tbDomainContracts)),
                 Project = cbDomainContracts,
                 FolderPath = tbDomainContracts.Text,
                 Extension = DOMAIN_EXTENSION,
+                Arguments = GetArguments(cbDomainContracts, tbDomainContracts)
             });
 
             Generator.GenerateObject(new GeneratorCriteria
             {
-                Template = new ViewModel(Arguments),
+                Template = new ViewModel(GetArguments(cbViewModels, tbViewModels)),
                 Project = cbViewModels,
                 FolderPath = tbViewModels.Text,
                 Extension = VIEW_MODEL_EXTENSION,
+                Arguments = GetArguments(cbViewModels, tbViewModels)
             });
-            
+
             Generator.GenerateObject(new GeneratorCriteria
             {
-                Template = new DataModel(Arguments),
+                Template = new DataModel(GetArguments(cbDataModels, tbDataModels)),
                 Project = cbDataModels,
                 FolderPath = tbDataModels.Text,
-                Extension = DATA_EXTENSION
+                Extension = DATA_EXTENSION,
+                Arguments = GetArguments(cbDataModels, tbDataModels)
             });
 
             Generator.GenerateObject(new GeneratorCriteria
             {
-                Template = new DomainModel(Arguments),
+                Template = new DomainModel(GetArguments(cbDomainModels, tbDomainModels)),
                 Project = cbDomainModels,
                 FolderPath = tbDomainModels.Text,
-                Extension = DOMAIN_EXTENSION
+                Extension = DOMAIN_EXTENSION,
+                Arguments = GetArguments(cbDomainModels, tbDomainModels)
             });
 
             Generator.GenerateObject(new GeneratorCriteria
             {
-                Template = new Controller(Arguments),
+                Template = new Controller(GetArguments(cbControllers, tbControllers)),
                 Project = cbControllers,
                 FolderPath = tbControllers.Text,
-                Extension = CONTROLLER_EXTENSION
+                Extension = CONTROLLER_EXTENSION,
+                Arguments = GetArguments(cbControllers, tbControllers)
             });
         }
 
@@ -149,11 +141,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new CreateView(Arguments),
+                        Template = new CreateView(GetArguments(cbViews, tbViews)),
                         Project = cbViews,
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Create,
                         Extension = VIEW_EXTENSION,
+                        Arguments = GetArguments(cbViews, tbViews)
                     });
                 }
 
@@ -161,11 +154,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new DetailsView(Arguments),
+                        Template = new DetailsView(GetArguments(cbViews, tbViews)),
                         Project = cbViews,
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Details,
                         Extension = VIEW_EXTENSION,
+                        Arguments = GetArguments(cbViews, tbViews)
                     });
                 }
 
@@ -173,11 +167,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new EditView(Arguments),
+                        Template = new EditView(GetArguments(cbViews, tbViews)),
                         Project = cbViews,
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Edit,
                         Extension = VIEW_EXTENSION,
+                        Arguments = GetArguments(cbViews, tbViews)
                     });
                 }
 
@@ -185,11 +180,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new Templates.UI.Views.ListView(Arguments),
+                        Template = new Templates.UI.Views.ListView(GetArguments(cbViews, tbViews)),
                         Project = cbViews,
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.List,
                         Extension = VIEW_EXTENSION,
+                        Arguments = GetArguments(cbViews, tbViews)
                     });
                 }
 
@@ -197,11 +193,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new Templates.UI.Views.View(Arguments),
+                        Template = new Templates.UI.Views.View(GetArguments(cbViews, tbViews)),
                         Project = cbViews,
                         FolderPath = tbViews.Text,
                         ViewType = ViewType.Specific,
                         Extension = VIEW_EXTENSION,
+                        Arguments = GetArguments(cbViews, tbViews)
                     });
                 }
             }
@@ -215,11 +212,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new CreateScript(Arguments),
+                        Template = new CreateScript(GetArguments(cbScriptModules, tbScriptModules)),
                         Project = cbScriptModules,
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Create,
                         Extension = SCRIPT_EXTENSION,
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
                     });
                 }
 
@@ -227,11 +225,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new DetailsScript(Arguments),
+                        Template = new DetailsScript(GetArguments(cbScriptModules, tbScriptModules)),
                         Project = cbScriptModules,
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Details,
                         Extension = SCRIPT_EXTENSION,
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
                     });
                 }
 
@@ -239,11 +238,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new EditScript(Arguments),
+                        Template = new EditScript(GetArguments(cbScriptModules, tbScriptModules)),
                         Project = cbScriptModules,
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Edit,
                         Extension = SCRIPT_EXTENSION,
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
                     });
                 }
 
@@ -251,11 +251,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new ListScript(Arguments),
+                        Template = new ListScript(GetArguments(cbScriptModules, tbScriptModules)),
                         Project = cbScriptModules,
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.List,
                         Extension = SCRIPT_EXTENSION,
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
                     });
                 }
 
@@ -263,11 +264,12 @@ namespace CodeGenerator
                 {
                     Generator.GenerateAsset(new GeneratorCriteria
                     {
-                        Template = new Script(Arguments),
+                        Template = new Script(GetArguments(cbScriptModules, tbScriptModules)),
                         Project = cbScriptModules,
                         FolderPath = tbScriptModules.Text,
                         ViewType = ViewType.Specific,
                         Extension = SCRIPT_EXTENSION,
+                        Arguments = GetArguments(cbScriptModules, tbScriptModules)
                     });
                 }
             }            
@@ -275,7 +277,8 @@ namespace CodeGenerator
 
         private void ParseSolution()
         {
-            var solution = SolutionParser.Parse(Arguments.SolutionPath + "\\" + Arguments.SolutionName + ".sln");
+            var args = GetArguments(null, null);
+            var solution = SolutionParser.Parse(args.SolutionPath + "\\" + args.SolutionName + ".sln");
             var solutionProjects = solution.Projects;
             var projects = new List<Project>() { new Project() };
 
@@ -314,16 +317,45 @@ namespace CodeGenerator
             cbViews.DataSource = projects;
         }
 
-        private Arguments GetArguments()
+        private Arguments GetArguments(ComboBox project, TextBox folders)
         {
             var arguments = new Arguments
             {
                 SolutionPath = tbSolutionPath.Text,
                 SolutionName = tbSolutionName.Text,
-                VerticleName = tbVerticleName.Text
+                VerticleName = tbVerticleName.Text,
+                Project = (project != null) ? project.Text : string.Empty,
+                Folders = (folders != null) ? folders.Text : string.Empty,
+                DataContracts = GetNamespace(cbDataContracts.Text, tbDataContracts.Text),
+                DomainContracts = GetNamespace(cbDomainContracts.Text, tbDomainContracts.Text),
+                ViewModels = GetNamespace(cbViewModels.Text, tbViewModels.Text)
             };
 
             return arguments;
+        }
+
+        private string GetNamespace(string prefix, string sufix)
+        {
+            sufix = (!string.IsNullOrEmpty(sufix))
+                ? "." + sufix.Replace("\\", ".")
+                : string.Empty;
+
+            return prefix + sufix;
+        }
+
+        private void ShowMessage()
+        {
+            lblStatus.Text = "";
+
+            if (!string.IsNullOrEmpty(Generator.Error))
+            {
+                lblStatus.Text = Generator.Error;
+                Generator.Error = string.Empty;
+            }
+            else
+            {
+                lblStatus.Text = "Complete - Do not forget to include the new assets in your solution.";
+            }
         }
     }
 }

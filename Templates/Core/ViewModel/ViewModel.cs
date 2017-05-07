@@ -18,7 +18,7 @@ namespace CodeGenerator.Templates.Core.ViewModel
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\CodeGenerator\Templates\Core\ViewModel\ViewModel.tt"
+    #line 1 "D:\Projects\CodeGenerator\Templates\Core\ViewModel\ViewModel.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class ViewModel : ViewModelBase
     {
@@ -30,14 +30,14 @@ namespace CodeGenerator.Templates.Core.ViewModel
         {
             this.Write("\r\nnamespace ");
             
-            #line 7 "C:\Projects\CodeGenerator\Templates\Core\ViewModel\ViewModel.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 7 "D:\Projects\CodeGenerator\Templates\Core\ViewModel\ViewModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.Namespace));
             
             #line default
             #line hidden
-            this.Write(".Core.ViewModels\r\n{\r\n    public class ");
+            this.Write("\r\n{\r\n    public class ");
             
-            #line 9 "C:\Projects\CodeGenerator\Templates\Core\ViewModel\ViewModel.tt"
+            #line 9 "D:\Projects\CodeGenerator\Templates\Core\ViewModel\ViewModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default

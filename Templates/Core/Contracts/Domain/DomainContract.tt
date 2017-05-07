@@ -4,9 +4,9 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 using System.Collections.Generic;
-using <#= m_data.SolutionName #>.Core.ViewModels;
+using <#= m_data.ViewModels #>;
 
-namespace <#= m_data.SolutionName #>.Core.Contracts.Domain
+namespace <#= m_data.Namespace #>
 {
     public interface I<#= m_data.VerticleName #>Domain
     {

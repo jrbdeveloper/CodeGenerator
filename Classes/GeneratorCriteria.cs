@@ -14,5 +14,7 @@ namespace CodeGenerator.Classes
         public string FolderPath { get; set; }
         
         public ViewType ViewType { get; set; }
+
+        public Arguments Arguments { get; set; }
     }
 }

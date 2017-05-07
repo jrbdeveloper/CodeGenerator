@@ -3,11 +3,11 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-using <#= m_data.SolutionName #>.Core.Contracts.Domain;
-using <#= m_data.SolutionName #>.Core.ViewModels;
+using <#= m_data.DomainContracts #>;
+using <#= m_data.ViewModels #>;
 using System.Web.Mvc;
 
-namespace <#= m_data.SolutionName #>.UI.Controllers
+namespace <#= m_data.Namespace #>
 {
     public class <#= m_data.VerticleName #>Controller : BaseController
     {

@@ -18,7 +18,7 @@ namespace CodeGenerator.Templates.UI.Views
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+    #line 1 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class DetailsView : DetailsViewBase
     {
@@ -30,42 +30,42 @@ namespace CodeGenerator.Templates.UI.Views
         {
             this.Write("@model ");
             
-            #line 6 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 6 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.ViewModels));
             
             #line default
             #line hidden
-            this.Write(".Core.ViewModels.");
+            this.Write(".");
             
-            #line 6 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 6 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("ViewModel\r\n\r\n@{\r\n    ViewBag.Title = \"");
             
-            #line 9 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 9 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write(" Details\";\r\n}\r\n\r\n<h1>");
             
-            #line 12 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 12 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write(" Details</h1>\r\n<hr />\r\n\r\n<div class=\"container\" id=\"");
             
-            #line 15 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 15 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("-details-container\">\r\n    \r\n</div>\r\n\r\n<script src=\"~/Scripts/Modules/");
             
-            #line 19 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 19 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -73,14 +73,14 @@ namespace CodeGenerator.Templates.UI.Views
             this.Write("/details.module.js\"></script>\r\n<script>\r\n    $(document).ready(function () {\r\n   " +
                     "     $(\"#");
             
-            #line 22 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 22 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("-details-container\").Details");
             
-            #line 22 "C:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
+            #line 22 "D:\Projects\CodeGenerator\Templates\UI\Views\DetailsView.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default

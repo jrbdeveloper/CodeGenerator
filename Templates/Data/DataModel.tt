@@ -5,10 +5,10 @@
 <#@ import namespace="System.Collections.Generic" #>
 using System;
 using System.Collections.Generic;
-using <#= m_data.SolutionName #>.Core.Contracts.Data;
-using <#= m_data.SolutionName #>.Core.ViewModels;
+using <#= m_data.DataContracts #>;
+using <#= m_data.ViewModels #>;
 
-namespace <#= m_data.SolutionName #>.Data
+namespace <#= m_data.Namespace #>
 {
     public class <#= m_data.VerticleName #>Data : BaseData, I<#= m_data.VerticleName #>Data
     {

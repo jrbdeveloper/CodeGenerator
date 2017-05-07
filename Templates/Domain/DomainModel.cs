@@ -18,7 +18,7 @@ namespace CodeGenerator.Templates.Domain
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+    #line 1 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class DomainModel : DomainModelBase
     {
@@ -30,63 +30,63 @@ namespace CodeGenerator.Templates.Domain
         {
             this.Write("using System.Collections.Generic;\r\nusing ");
             
-            #line 7 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 7 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.DataContracts));
             
             #line default
             #line hidden
-            this.Write(".Core.Contracts.Data;\r\nusing ");
+            this.Write(";\r\nusing ");
             
-            #line 8 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
-            
-            #line default
-            #line hidden
-            this.Write(".Core.Contracts.Domain;\r\nusing ");
-            
-            #line 9 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 8 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.DomainContracts));
             
             #line default
             #line hidden
-            this.Write(".Core.ViewModels;\r\n\r\nnamespace ");
+            this.Write(";\r\nusing ");
             
-            #line 11 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.SolutionName));
+            #line 9 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.ViewModels));
             
             #line default
             #line hidden
-            this.Write(".Domain\r\n{\r\n    public class ");
+            this.Write(";\r\n\r\nnamespace ");
             
-            #line 13 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 11 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m_data.Namespace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    public class ");
+            
+            #line 13 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain : BaseModel, I");
             
-            #line 13 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 13 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain\r\n    {\r\n        private I");
             
-            #line 15 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 15 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Data _data;\r\n\r\n        public ");
             
-            #line 17 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 17 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
             #line hidden
             this.Write("Domain(I");
             
-            #line 17 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 17 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -94,7 +94,7 @@ namespace CodeGenerator.Templates.Domain
             this.Write("Data data)\r\n        {\r\n            _data = data;\r\n        }\r\n\r\n        public IEn" +
                     "umerable<");
             
-            #line 22 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 22 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -102,7 +102,7 @@ namespace CodeGenerator.Templates.Domain
             this.Write("ViewModel> GetAll()\r\n        {\r\n            return _data.GetAll();\r\n        }\r\n\r\n" +
                     "        public ");
             
-            #line 27 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 27 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
@@ -110,7 +110,7 @@ namespace CodeGenerator.Templates.Domain
             this.Write("ViewModel GetById(int id)\r\n        {\r\n            return _data.GetById(id);\r\n    " +
                     "    }\r\n\r\n        public bool Save(");
             
-            #line 32 "C:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
+            #line 32 "D:\Projects\CodeGenerator\Templates\Domain\DomainModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m_data.VerticleName));
             
             #line default
