@@ -73,6 +73,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -86,9 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Arguments.cs" />
+    <Compile Include="Classes\Configuration\Asset.cs" />
+    <Compile Include="Classes\Configuration\Configuration.cs" />
     <Compile Include="Classes\FileLibrary.cs" />
     <Compile Include="Classes\Generator.cs" />
     <Compile Include="Classes\GeneratorCriteria.cs" />
+    <Compile Include="Classes\Configuration\Solution.cs" />
     <Compile Include="Classes\Templates\Controller.cs" />
     <Compile Include="Classes\Templates\ITemplate.cs" />
     <Compile Include="Classes\Templates\Scripts\CreateScript.cs" />

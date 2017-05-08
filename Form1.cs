@@ -11,6 +11,8 @@ using Onion.SolutionParser.Parser;
 using System.Collections.Generic;
 using CodeGenerator.Templates.UI.Views;
 using CodeGenerator.Templates.UI.Scripts;
+using CodeGenerator.Classes.Configuration;
+using System.Linq;
 
 namespace CodeGenerator
 {
@@ -70,6 +72,26 @@ namespace CodeGenerator
             GenerateViews();
             GenerateScripts();
             ShowMessage();
+
+            var config = new Configuration();
+            var solution = config.Find(tbSolutionName.Text);
+            if (solution != null)
+            {
+                solution.Name = tbSolutionName.Text;
+                solution.Path = tbSolutionPath.Text;
+                solution.VerticleName = tbVerticleName.Text;
+
+                config.Update(solution);
+            }
+            else
+            {
+                config.Save(new Solution
+                {
+                    Name = tbSolutionName.Text,
+                    Path = tbSolutionPath.Text,
+                    VerticleName = tbVerticleName.Text
+                });
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -296,46 +318,63 @@ namespace CodeGenerator
         {
             var args = GetArguments(null, null);
             var solution = SolutionParser.Parse(args.SolutionPath + "\\" + args.SolutionName + ".sln");
-            var solutionProjects = solution.Projects;
-            var projects = new List<Project>() { new Project() };
 
-            foreach (var project in solutionProjects)
+            var mySolution = new Solution
             {
-                projects.Add(new Project
-                {
-                    Guid = project.Guid,
-                    Name = project.Name,
-                    Path = project.Path
-                });
-            }
+                Name = tbSolutionName.Text,
+                Path = tbSolutionPath.Text,
+                VerticleName = tbVerticleName.Text,
+                Projects = (from item in solution.Projects
+                            select new Project
+                            {
+                                Guid = item.Guid,
+                                Name = item.Name,
+                                Path = item.Path
+                            }).ToList()
+            };
+
+            //var solutionProjects = solution.Projects;
+            //var projects = new List<Project>() { new Project() };
+
+            //foreach (var project in solutionProjects)
+            //{
+            //    projects.Add(new Project
+            //    {
+            //        Guid = project.Guid,
+            //        Name = project.Name,
+            //        Path = project.Path
+            //    });
+            //}
 
             cbDataContracts.BindingContext = new BindingContext();
-            cbDataContracts.DataSource = projects;
+            cbDataContracts.DataSource = mySolution.Projects;
 
             cbDomainContracts.BindingContext = new BindingContext();
-            cbDomainContracts.DataSource = projects;
+            cbDomainContracts.DataSource = mySolution.Projects;
 
             cbViewModels.BindingContext = new BindingContext();
-            cbViewModels.DataSource = projects;
+            cbViewModels.DataSource = mySolution.Projects;
 
             cbDataModels.BindingContext = new BindingContext();
-            cbDataModels.DataSource = projects;
+            cbDataModels.DataSource = mySolution.Projects;
 
             cbDomainModels.BindingContext = new BindingContext();
-            cbDomainModels.DataSource = projects;
+            cbDomainModels.DataSource = mySolution.Projects;
 
             cbControllers.BindingContext = new BindingContext();
-            cbControllers.DataSource = projects;
+            cbControllers.DataSource = mySolution.Projects;
 
             cbScriptModules.BindingContext = new BindingContext();
-            cbScriptModules.DataSource = projects;
+            cbScriptModules.DataSource = mySolution.Projects;
 
             cbViews.BindingContext = new BindingContext();
-            cbViews.DataSource = projects;
+            cbViews.DataSource = mySolution.Projects;
         }
 
         private Arguments GetArguments(ComboBox project, TextBox folders)
         {
+            var file = new FileLibrary();
+
             var arguments = new Arguments
             {
                 SolutionPath = tbSolutionPath.Text,
@@ -343,21 +382,12 @@ namespace CodeGenerator
                 VerticleName = tbVerticleName.Text,
                 Project = (project != null) ? project.Text : string.Empty,
                 Folders = (folders != null) ? folders.Text : string.Empty,
-                DataContracts = GetNamespace(cbDataContracts.Text, tbDataContracts.Text),
-                DomainContracts = GetNamespace(cbDomainContracts.Text, tbDomainContracts.Text),
-                ViewModels = GetNamespace(cbViewModels.Text, tbViewModels.Text)
+                DataContracts = file.GetNamespace(cbDataContracts.Text, tbDataContracts.Text),
+                DomainContracts = file.GetNamespace(cbDomainContracts.Text, tbDomainContracts.Text),
+                ViewModels = file.GetNamespace(cbViewModels.Text, tbViewModels.Text)
             };
 
             return arguments;
-        }
-
-        private string GetNamespace(string prefix, string sufix)
-        {
-            sufix = (!string.IsNullOrEmpty(sufix))
-                ? "." + sufix.Replace("\\", ".")
-                : string.Empty;
-
-            return prefix + sufix;
         }
 
         private void ShowMessage()
