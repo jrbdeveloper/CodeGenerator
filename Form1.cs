@@ -318,33 +318,23 @@ namespace CodeGenerator
         {
             var args = GetArguments(null, null);
             var solution = SolutionParser.Parse(args.SolutionPath + "\\" + args.SolutionName + ".sln");
+            var projects = (from item in solution.Projects
+                            select new Project
+                            {
+                                Guid = item.Guid,
+                                Name = item.Name,
+                                Path = item.Path
+                            }).ToList();
+
+            projects.Insert(0, new Project());
 
             var mySolution = new Solution
             {
                 Name = tbSolutionName.Text,
                 Path = tbSolutionPath.Text,
                 VerticleName = tbVerticleName.Text,
-                Projects = (from item in solution.Projects
-                            select new Project
-                            {
-                                Guid = item.Guid,
-                                Name = item.Name,
-                                Path = item.Path
-                            }).ToList()
+                Projects = projects
             };
-
-            //var solutionProjects = solution.Projects;
-            //var projects = new List<Project>() { new Project() };
-
-            //foreach (var project in solutionProjects)
-            //{
-            //    projects.Add(new Project
-            //    {
-            //        Guid = project.Guid,
-            //        Name = project.Name,
-            //        Path = project.Path
-            //    });
-            //}
 
             cbDataContracts.BindingContext = new BindingContext();
             cbDataContracts.DataSource = mySolution.Projects;
