@@ -61,7 +61,7 @@ namespace CodeGenerator.Classes.Configuration
 
         public Solution Find(string name)
         {
-            return Read().Solutions.SingleOrDefault(m => m.Name == name);
+            return Read().Solutions.FirstOrDefault(m => m.Name == name);
         }
         
         public void Save(Configuration configuration)

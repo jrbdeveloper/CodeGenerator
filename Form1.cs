@@ -12,6 +12,7 @@ using CodeGenerator.Templates.UI.Views;
 using CodeGenerator.Templates.UI.Scripts;
 using CodeGenerator.Classes.Configuration;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace CodeGenerator
 {
@@ -296,16 +297,7 @@ namespace CodeGenerator
 
         private void ParseSolution()
         {
-            var args = GetArguments(null, null);
-            var solution = SolutionParser.Parse(args.SolutionPath + "\\" + args.SolutionName + ".sln");
-            var projects = (from item in solution.Projects
-                            select new Project
-                            {
-                                Guid = item.Guid,
-                                Name = item.Name,
-                                Path = item.Path
-                            }).ToList();
-
+           var projects = GetProjects();
             projects.Insert(0, new Project());
 
             var mySolution = new Solution
@@ -319,23 +311,41 @@ namespace CodeGenerator
             BindControls(mySolution);
         }
 
+        private List<Project> GetProjects()
+        {
+            var args = GetArguments(null, null);
+            var solution = SolutionParser.Parse(args.SolutionPath + "\\" + args.SolutionName + ".sln");
+            var projects = (from item in solution.Projects
+                            select new Project
+                            {
+                                Guid = item.Guid,
+                                Name = item.Name,
+                                Path = item.Path
+                            }).ToList();
+
+            return projects;
+        }
+
         private void UpdateConfiguration()
         {
             var configuration = new Configuration();
             var solution = configuration.Find(tbSolutionName.Text);
 
-            if (!configuration.Solutions.Contains(solution))
+            if (configuration.Solutions.Contains(solution))
             {
-                configuration.Solutions.AddRange(configuration.Read().Solutions);
-                configuration.Solutions.Add(new Solution
-                {
-                    Name = tbSolutionName.Text,
-                    Path = tbSolutionPath.Text,
-                    VerticleName = tbVerticleName.Text
-                });
+                configuration.Solutions.Remove(solution);
+            }
 
-                configuration.Save(configuration);
-            }            
+            configuration.Solutions.AddRange(configuration.Read().Solutions);
+            configuration.Solutions.Add(new Solution
+            {
+                Name = tbSolutionName.Text,
+                Path = tbSolutionPath.Text,
+                VerticleName = tbVerticleName.Text,
+                Projects = GetProjects()
+            });
+
+            configuration.Save(configuration);
         }
 
         private void BindControls(Solution solution)
