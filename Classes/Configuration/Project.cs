@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeGenerator.Classes
+namespace CodeGenerator.Classes.Configuration
 {
     public class Project
     {

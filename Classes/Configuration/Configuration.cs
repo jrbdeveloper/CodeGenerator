@@ -32,7 +32,7 @@ namespace CodeGenerator.Classes.Configuration
             //GetConfiguration();
         }
 
-        private Configuration GetConfiguration()
+        public Configuration Read()
         {
             try
             {
@@ -61,26 +61,14 @@ namespace CodeGenerator.Classes.Configuration
 
         public Solution Find(string name)
         {
-            var list = GetConfiguration().Solutions;
-            var result = from item in list
-                         where item.Name == name
-                         select (Solution)item;
-
-            return result.SingleOrDefault();
+            return Read().Solutions.SingleOrDefault(m => m.Name == name);
         }
-
-        public void Update(Solution solution)
+        
+        public void Save(Configuration configuration)
         {
-                       
-        }
-
-        public void Save(Solution solution)
-        {
-            Solutions.Add(solution);
-            
             var ser = new DataContractJsonSerializer(typeof(Configuration));
             var file = File.OpenWrite("file.json");
-            ser.WriteObject(file, this);
+            ser.WriteObject(file, configuration);
             file.Close();
         }
     }

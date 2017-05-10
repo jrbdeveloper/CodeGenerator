@@ -8,7 +8,6 @@ using CodeGenerator.Templates.UI.Controller;
 using System.Windows.Forms;
 using System;
 using Onion.SolutionParser.Parser;
-using System.Collections.Generic;
 using CodeGenerator.Templates.UI.Views;
 using CodeGenerator.Templates.UI.Scripts;
 using CodeGenerator.Classes.Configuration;
@@ -71,27 +70,8 @@ namespace CodeGenerator
             GenerateObjects();
             GenerateViews();
             GenerateScripts();
-            ShowMessage();
-
-            var config = new Configuration();
-            var solution = config.Find(tbSolutionName.Text);
-            if (solution != null)
-            {
-                solution.Name = tbSolutionName.Text;
-                solution.Path = tbSolutionPath.Text;
-                solution.VerticleName = tbVerticleName.Text;
-
-                config.Update(solution);
-            }
-            else
-            {
-                config.Save(new Solution
-                {
-                    Name = tbSolutionName.Text,
-                    Path = tbSolutionPath.Text,
-                    VerticleName = tbVerticleName.Text
-                });
-            }
+            UpdateConfiguration();
+            ShowMessage();            
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -336,29 +316,53 @@ namespace CodeGenerator
                 Projects = projects
             };
 
+            BindControls(mySolution);
+        }
+
+        private void UpdateConfiguration()
+        {
+            var configuration = new Configuration();
+            var solution = configuration.Find(tbSolutionName.Text);
+
+            if (!configuration.Solutions.Contains(solution))
+            {
+                configuration.Solutions.AddRange(configuration.Read().Solutions);
+                configuration.Solutions.Add(new Solution
+                {
+                    Name = tbSolutionName.Text,
+                    Path = tbSolutionPath.Text,
+                    VerticleName = tbVerticleName.Text
+                });
+
+                configuration.Save(configuration);
+            }            
+        }
+
+        private void BindControls(Solution solution)
+        {
             cbDataContracts.BindingContext = new BindingContext();
-            cbDataContracts.DataSource = mySolution.Projects;
+            cbDataContracts.DataSource = solution.Projects;
 
             cbDomainContracts.BindingContext = new BindingContext();
-            cbDomainContracts.DataSource = mySolution.Projects;
+            cbDomainContracts.DataSource = solution.Projects;
 
             cbViewModels.BindingContext = new BindingContext();
-            cbViewModels.DataSource = mySolution.Projects;
+            cbViewModels.DataSource = solution.Projects;
 
             cbDataModels.BindingContext = new BindingContext();
-            cbDataModels.DataSource = mySolution.Projects;
+            cbDataModels.DataSource = solution.Projects;
 
             cbDomainModels.BindingContext = new BindingContext();
-            cbDomainModels.DataSource = mySolution.Projects;
+            cbDomainModels.DataSource = solution.Projects;
 
             cbControllers.BindingContext = new BindingContext();
-            cbControllers.DataSource = mySolution.Projects;
+            cbControllers.DataSource = solution.Projects;
 
             cbScriptModules.BindingContext = new BindingContext();
-            cbScriptModules.DataSource = mySolution.Projects;
+            cbScriptModules.DataSource = solution.Projects;
 
             cbViews.BindingContext = new BindingContext();
-            cbViews.DataSource = mySolution.Projects;
+            cbViews.DataSource = solution.Projects;
         }
 
         private Arguments GetArguments(ComboBox project, TextBox folders)

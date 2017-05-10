@@ -105,7 +105,7 @@
     <Compile Include="Classes\Templates\DataModel.cs" />
     <Compile Include="Classes\Templates\DomainContract.cs" />
     <Compile Include="Classes\Templates\DomainModel.cs" />
-    <Compile Include="Classes\Project.cs" />
+    <Compile Include="Classes\Configuration\Project.cs" />
     <Compile Include="Classes\Templates\Views\DetailsView.cs" />
     <Compile Include="Classes\Templates\Views\EditView.cs" />
     <Compile Include="Classes\Templates\Views\ListView.cs" />
